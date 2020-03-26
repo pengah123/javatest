@@ -21,11 +21,11 @@ import java.util.Map;
         输出: 4
 */
 public class Solution136 {
-    public int singleNumber(int[] nums) {
+    public static int singleNumber(int[] nums) {
         Map<Integer,Integer> map=new HashMap<>();
         for(Integer i:nums){
             Integer count=map.get(i);
-            count=count==null?1:count++;
+            count = count==null ? 1 : ++count;
             map.put(i,count);
         }
         for(Integer i:map.keySet()){
