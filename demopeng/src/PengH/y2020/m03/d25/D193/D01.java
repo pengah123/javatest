@@ -9,7 +9,11 @@ public class D01 {
         laptop.LaptopOff();
 
     }
-
+/*
+    synchronized(锁对象){
+    可能出现问题的代码
+    }
+* */
 
 
 }
