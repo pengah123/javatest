@@ -35,6 +35,7 @@ public class TCPServer {
 
                 }
             }).start();
+            server.close();
         }
     }
 }
