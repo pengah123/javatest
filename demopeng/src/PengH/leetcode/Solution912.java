@@ -98,38 +98,71 @@ public class Solution912 {
         }
         return nums;
     }
+
     //归并排序
     public int[] sortArray5(int[] nums) {
         int len = nums.length;
-        if(len<2)
+        if (len < 2)
             return nums;
-        else{
-            int middle=(int)Math.floor(len/2);
-            int[] left=Arrays.copyOfRange(nums,0,middle);
-            int[] right=Arrays.copyOfRange(nums,middle,len);
-            return merge(sortArray5(left),sortArray5(right));
+        else {
+            int middle = (int) Math.floor(len / 2);
+            int[] left = Arrays.copyOfRange(nums, 0, middle);
+            int[] right = Arrays.copyOfRange(nums, middle, len);
+            return merge(sortArray5(left), sortArray5(right));
         }
     }
-    public int[] merge(int[] left,int [] right){
-        int[] result=new int[left.length+right.length];
-        int i=0;
-        while (left.length>0&&right.length>0){
-            if(left[0]<right[0]){
-                result[i++]=left[0];
-                left=Arrays.copyOfRange(left,1,left.length);
-            }else{
-                result[i++]=right[0];
-                right=Arrays.copyOfRange(right,1,right.length);
+
+    public int[] merge(int[] left, int[] right) {
+        int[] result = new int[left.length + right.length];
+        int i = 0;
+        while (left.length > 0 && right.length > 0) {
+            if (left[0] < right[0]) {
+                result[i++] = left[0];
+                left = Arrays.copyOfRange(left, 1, left.length);
+            } else {
+                result[i++] = right[0];
+                right = Arrays.copyOfRange(right, 1, right.length);
             }
         }
-        while(left.length>0){
-            result[i++]=left[0];
-            left=Arrays.copyOfRange(left,1,left.length);
+        while (left.length > 0) {
+            result[i++] = left[0];
+            left = Arrays.copyOfRange(left, 1, left.length);
         }
-        while(right.length>0){
-            result[i++]=right[0];
-            right=Arrays.copyOfRange(right,1,right.length);
+        while (right.length > 0) {
+            result[i++] = right[0];
+            right = Arrays.copyOfRange(right, 1, right.length);
         }
         return result;
     }
+
+    //快速排序
+    public int[] sortArray6(int[] nums) {
+        return quickSort(nums, 0, nums.length-1);
+
+    }
+
+    public int[] quickSort(int[] nums, int left, int right) {
+        if (left < right) {
+            int index = index(nums, left, right);
+            quickSort(nums, left, index - 1);
+            quickSort(nums, index + 1, right);
+        }
+        return nums;
+    }
+
+    public int index(int[] nums, int left, int right) {
+        int pivot=left;
+        int index=left+1;
+        for(int i=index;i<=right;i++){
+            if(nums[i]<nums[pivot]){
+                swap(nums,i,index);
+                index++;
+            }
+
+        }
+        swap(nums,index-1,left);
+        return index-1;
+    }
+
+    //
 }
